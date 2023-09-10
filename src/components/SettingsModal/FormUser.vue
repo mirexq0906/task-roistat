@@ -4,9 +4,13 @@
 
     <div class="user-form__inputs">
       <input class="input" v-model="name" type="text" placeholder="Введите имя">
+
       <span class="user-form__valid" ref="validName"></span>
-      <input class="input" v-model="phone"  v-mask="'+7(###)-###-##-##'" type="text" placeholder="Введите телефон">
+
+      <input class="input" v-model="phone" v-mask="'+7(###)-###-##-##'" type="text" placeholder="Введите телефон">
+
       <span class="user-form__valid" ref="validPhone"></span>
+
       <my-dropdown :query="dropdownQuery" v-model="activeDropdownQuery" />
     </div>
 
@@ -38,15 +42,17 @@ export default {
     handleCreateUser() {
       let isValid = false
       if (!this.name.length) {
-        this.$refs.validName.innerHTML = "Поле не должно быть пустым"
+        this.$refs.validName.innerHTML = 'Поле не должно быть пустым'
         isValid = true
       }
       if (this.phone.length !== 17) {
-        this.$refs.validPhone.innerHTML = "Поле должно иметь 10 цифр"
+        this.$refs.validPhone.innerHTML = 'Поле должно иметь 10 цифр'
         isValid = true
       }
       if (!isValid) {
         this.$emit('create', { name: this.name, phone: this.phone, activeDropdownQuery: this.activeDropdownQuery })
+        this.$refs.validName.innerHTML = ""
+        this.$refs.validPhone.innerHTML = ""
         this.name = ''
         this.phone = ''
         this.activeDropdownQuery = {}

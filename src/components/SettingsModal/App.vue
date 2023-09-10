@@ -1,6 +1,7 @@
 <template>
   <main-modal>
-    <form-user @create="(dataUser) => addUser(dataUser)" :dropdownQuery="getAllUsers" v-if="currentModal === 'form-user'" />
+    <form-user @create="(dataUser) => addUser(dataUser)" :dropdownQuery="getAllUsers"
+      v-if="currentModal === 'form-user'" />
   </main-modal>
 </template>
 
@@ -12,7 +13,9 @@ export default {
   components: { MainModal, FormUser },
   computed: {
     ...mapGetters(['getAllUsers']),
-    ...mapState(['currentModal']),
+    ...mapState({
+      currentModal: state => state.modal.currentModal,
+    }),
   },
   methods: {
     ...mapMutations(['addUser'])
