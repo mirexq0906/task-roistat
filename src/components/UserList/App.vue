@@ -1,14 +1,14 @@
 <template>
-  <list v-model="sortQuery">
+  <sort-list v-model="sortQuery">
     <item v-for="item in sortedUsers" :key="item.id" :user="item" />
-  </list>
+  </sort-list>
 </template>
 
 <script>
 import Item from './Item.vue';
-import List from './List.vue';
+import SortList from './SortList.vue';
 export default {
-  components: { List, Item },
+  components: { SortList, Item },
   props: {
     users: {
       type: Array,
